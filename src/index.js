@@ -29,10 +29,12 @@ async function fetchData(url) {
 
 async function getImage(showImageURL, container) {
   const img1 = document.createElement("img");
+  console.log(typeof showImageURL);
   if (showImageURL == null) {
     return img1;
   }
-  fetch(showImageURL)
+  img1.src = showImageURL;
+  /*fetch(showImageURL)
     .then((response) => response.blob())
     .then((myBlob) => {
       const objectURL = URL.createObjectURL(myBlob);
@@ -40,7 +42,7 @@ async function getImage(showImageURL, container) {
     })
     .catch((error) => {
       return Promise.reject();
-    });
+    });*/
   return img1;
 }
 
@@ -49,7 +51,7 @@ async function addToDocument(container, showName, showSUmmary, showImageURL) {
   const showTitle = document.createElement("h1");
   infoDiv.className = "show-info";
   showTitle.innerHTML = showName;
-  console.log(showImageURL);
+
   infoDiv.appendChild(showTitle);
 
   infoDiv.innerHTML = infoDiv.innerHTML + showSUmmary;

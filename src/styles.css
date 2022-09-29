@@ -1,0 +1,44 @@
+body {
+  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
+  background-color: #eceff1;
+}
+
+.show-data {
+  width: 100%;
+  background-color: #cfd8dc;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 5px 10px #888888;
+}
+
+.show-data h1 {
+  text-align: center;
+}
+
+img {
+  display: block;
+}
+
+.show-info {
+  width: 100%;
+}
+
+@media only screen and (min-width: 800px) {
+  .show-data {
+    display: flex;
+  }
+  .show-info {
+    padding: 10px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  img {
+    margin: auto;
+  }
+  .show-info p {
+    text-align: center;
+    padding: 10px;
+  }
+}

@@ -33,7 +33,7 @@ body {
     padding: 10px;
   }
 }
-@media only screen and (max-width: 799px) {
+@media only screen and (max-width: 800px) {
   img {
     margin: auto;
   }

@@ -66,12 +66,11 @@ function clearNode(parent) {
 async function startFunction() {
   let search = $("s-form");
   //let dataContainer = $("dataS");
-  let dataContainer = document.createElement("div");
-  dataContainer.className = "show-data";
-  document.body.appendChild(dataContainer);
+  let theContainer = document.createElement("div");
+  document.body.appendChild(theContainer);
   search.addEventListener("submit", function handleSubmit(event) {
     event.preventDefault();
-    clearNode(dataContainer);
+    clearNode(theContainer);
 
     let show = $("input-show").value;
     let url = "https://api.tvmaze.com/search/shows?q=" + show;
@@ -81,6 +80,9 @@ async function startFunction() {
           return;
         } else {
           for (let i = 0; i < res.length; i++) {
+            let dataContainer = document.createElement("div");
+            dataContainer.className = "show-data";
+            theContainer.appendChild(dataContainer);
             addToDocument(
               dataContainer,
               res[i].show.name,

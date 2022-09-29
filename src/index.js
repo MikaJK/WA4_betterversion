@@ -29,7 +29,9 @@ async function fetchData(url) {
 
 async function getImage(showImageURL, container) {
   const img1 = document.createElement("img");
-
+  if (showImageURL == null) {
+    return img1;
+  }
   fetch(showImageURL)
     .then((response) => response.blob())
     .then((myBlob) => {
@@ -43,17 +45,18 @@ async function getImage(showImageURL, container) {
 }
 
 async function addToDocument(container, showName, showSUmmary, showImageURL) {
-  const img1 = await getImage(showImageURL);
-
   const infoDiv = document.createElement("div");
   const showTitle = document.createElement("h1");
   infoDiv.className = "show-info";
   showTitle.innerHTML = showName;
-
+  console.log(showImageURL);
   infoDiv.appendChild(showTitle);
 
   infoDiv.innerHTML = infoDiv.innerHTML + showSUmmary;
+
+  const img1 = await getImage(showImageURL);
   container.appendChild(img1);
+
   container.appendChild(infoDiv);
 }
 
@@ -79,17 +82,24 @@ async function startFunction() {
         if (res.length === 0) {
           return;
         } else {
-          for (let i = 0; i < res.length; i++) {
+          res.forEach((element) => {
             let dataContainer = document.createElement("div");
             dataContainer.className = "show-data";
             theContainer.appendChild(dataContainer);
+            //console.log(i + " " + JSON.stringify(element));
+            var imageName = element.show.image;
+            if (imageName == null) {
+              imageName = null;
+            } else {
+              imageName = imageName["medium"];
+            }
             addToDocument(
               dataContainer,
-              res[i].show.name,
-              res[i].show.summary,
-              res[i].show.image["medium"]
+              element.show.name,
+              element.show.summary,
+              imageName
             );
-          }
+          });
         }
       })
       .then(console.log("done"))
